@@ -1,0 +1,42 @@
+ +------------------+            +------------------+
+ |    customers     | 1        N |     devices      |
+ +------------------+------------+------------------+
+ | PK customer_id   |            | PK device_id     |
+ |    customer_name |            | FK customer_id   |
+ |    email         |            |    brand         |
+ |    phone         |            |    model         |
+ |    city          |            |    serial_number |
+ +------------------+            +------------------+
+                                          | 1
+                                          |
+                                          | N
+ +------------------+            +------------------+
+ |   technicians    | 1        N |   repair_jobs    |
+ +------------------+------------+------------------+
+ | PK technician_id |            | PK job_id        |
+ |    technician_nm |            | FK device_id     |
+ |    email         |            | FK technician_id |
+ |    specialty     |            |    fault_desc    |
+ +------------------+            |    status        |
+                                 |    labor_cost_sek|
+                                 +------------------+
+                                          | 1
+                                          |
+                                          | N (M:N uppdelad)
+                                 +------------------+
+                                 |    job_parts     |
+                                 +------------------+
+                                 | PK/FK job_id     |
+                                 | PK/FK part_id    |
+                                 |       quantity   |
+                                 +------------------+
+                                          | N
+                                          |
+                                          | 1
+                                 +------------------+
+                                 |      parts       |
+                                 +------------------+
+                                 | PK part_id       |
+                                 |    part_name     |
+                                 |    unit_price_sek|
+                                 +------------------+
